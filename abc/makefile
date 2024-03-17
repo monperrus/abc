@@ -1,37 +1,37 @@
 all : abc.exe benchbytes.exe makefreq.exe twocolumn.exe text2pdf.exe histo.exe historec.exe midi2abc.exe
 
 # just MLTON=mlton should work on most installations btw
-MLTON=/c/mlton/bin/mlton.bat
+MLTON=/tmp/mlton-20210117-1.amd64-linux-glibc2.23/bin/mlton
 # MLTON=mlton
 
 ABC_SML = abc.sml cil.sml toasm-sig.sml acc-sig.sml encode-x86-sig.sml optimize-asm-sig.sml toasm.sml acc.sml encode-x86.sml optimize-asm.sml tocil-sig.sml allocate-tmps-sig.sml exe-sig.sml optimize-cil-sig.sml tocil.sml allocate-tmps.sml exe.sml optimize-cil.sml tox86-sig.sml asm.sml flags.sml segment-sig.sml tox86.sml liveness-sig.sml segment.sml cil-pass-sig.sml liveness.sml cil-pass.sml machine-sig.sml tactics-sig.sml x86.sml cil-util-sig.sml machine.sml tactics-test.sml cil-util.sml main.sml tactics.sml
 
 abc.exe : $(ABC_SML) abc.mlb
-	$(MLTON) -output $@ abc.mlb
+	$(MLTON) -link-opt -no-pie -output $@ abc.mlb
 
 maketest.exe : maketest.sml maketest.mlb
-	$(MLTON) -output $@ maketest.mlb
+	$(MLTON) -link-opt -no-pie -output $@ maketest.mlb
 
 truncpage.exe : truncpage.sml truncpage.mlb
-	$(MLTON) -output $@ truncpage.mlb
+	$(MLTON) -link-opt -no-pie -output $@ truncpage.mlb
 
 makefreq.exe : makefreq.sml makefreq.mlb
-	$(MLTON) -output $@ makefreq.mlb
+	$(MLTON) -link-opt -no-pie -output $@ makefreq.mlb
 
 twocolumn.exe : twocolumn.sml twocolumn.mlb
-	$(MLTON) -output $@ twocolumn.mlb
+	$(MLTON) -link-opt -no-pie -output $@ twocolumn.mlb
 
 histo.exe : histo.sml histo.mlb
-	$(MLTON) -output $@ histo.mlb
+	$(MLTON) -link-opt -no-pie -output $@ histo.mlb
 
 historec.exe : historec.sml historec.mlb
-	$(MLTON) -output $@ historec.mlb
+	$(MLTON) -link-opt -no-pie -output $@ historec.mlb
 
 benchbytes.exe : benchbytes.sml benchbytes.mlb
-	$(MLTON) -output $@ benchbytes.mlb
+	$(MLTON) -link-opt -no-pie -output $@ benchbytes.mlb
 
 midi2abc.exe : midi2abc.sml midi2abc.mlb
-	$(MLTON) -output $@ midi2abc.mlb
+	$(MLTON) -link-opt -no-pie -output $@ midi2abc.mlb
 
 TESTS = sizeof.exe builtin.exe simpcall.exe globals.exe globals2.exe callargs.exe dead.exe cond.exe cond2.exe simpleop.exe for.exe write.exe strlit.exe bitop.exe struct.exe fswitch.exe puts.exe puts2.exe sarray.exe
 
@@ -69,8 +69,8 @@ paper/end.2c : paper/end1.2c paper/histopage.txt makefile
 paper/sigbovik.txt : paper/sigbovik.png png2ascii.exe makefile
 	./png2ascii.exe "##23456:89ABC-- " $< > $@
 
-paper/paper.pdf : dos/paper.exe text2pdf.exe makefile
-	./text2pdf -c160 -s6 -v6 -l128 $< > paper/paper.pdf
+paper/paper.pdf : text2pdf.exe makefile
+	./text2pdf.exe -c160 -s6 -v6 -l128 paper.exe  > paper/paper.pdf
 
 tests : $(addprefix dos/,$(TESTS)) dos/tests.bat
 

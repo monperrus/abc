@@ -52,6 +52,8 @@ structure OldPrettyPrint :> OLD_PRETTYPRINT =
 	fun depth _ = NONE
 	fun lineWidth {consumer, linewidth, flush} = SOME linewidth
 	fun textWidth _ = NONE
+	fun maxIndent _ = NONE
+	fun ellipses _ = ("", 0)
 	fun space ({consumer, linewidth, flush}, n) =
 	      consumer (StringCvt.padLeft #" " n "")
 	fun newline {consumer, linewidth, flush} = consumer "\n"
