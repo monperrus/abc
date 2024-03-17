@@ -1,0 +1,29 @@
+diff -r mlton-20210117-1.amd64-linux-glibc2.23/lib/mlton/sml/smlnj-lib/PP/src/pp-device-sig.sml ../mlton-20210117-1.amd64-linux-glibc2.23/lib/mlton/sml/smlnj-lib/PP/src/pp-device-sig.sml
+51,52c51,52
+<     val maxDepth : device -> int option
+<     val setMaxDepth : device * int option -> unit
+---
+> (*     val maxDepth : device -> int option *)
+> (*     val setMaxDepth : device * int option -> unit *)
+56,57c56,57
+<     val setEllipses : device * string -> unit
+<     val setEllipsesWithSz : device * string * int -> unit
+---
+> (*     val setEllipses : device * string -> unit *)
+> (*     val setEllipsesWithSz : device * string * int -> unit *)
+61c61
+<     val setLineWidth : device * int option -> unit
+---
+> (*     val setLineWidth : device * int option -> unit *)
+65c65
+<     val setMaxIndent : device * int option -> unit
+---
+> (*     val setMaxIndent : device * int option -> unit *)
+72c72
+<     val setTextWidth : device * int option -> unit
+---
+> (*     val setTextWidth : device * int option -> unit *)
+77c77
+<     val indent : (device * int) -> unit
+---
+> (*     val indent : (device * int) -> unit *)
